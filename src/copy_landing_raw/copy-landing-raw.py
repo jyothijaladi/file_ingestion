@@ -6,6 +6,7 @@ import re
 import os
 
 # set up logging
+# Change to aws  powertools
 logging.basicConfig(
     level=logging.DEBUG, format="%(levelname)s: %(asctime)s: %(message)s"
 )
