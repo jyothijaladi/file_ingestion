@@ -1,0 +1,229 @@
+{
+    "source_system": "movie-lens",
+    "type": "file-ingestion",
+    "schedule": "* * * * * *",
+    "dataset_pipeline": [
+        {
+            "data_asset": "movie",
+            "raw": {
+                "file_type": "csv",
+                "source_bucket": "data-ing-movielens-landing",
+                "raw_bucket": "data-ing-movielens-raw",
+                "source_folder": "movie-lens",
+                "partition": "SECOND",
+                "file_pattern": "movie*"
+            },
+            "staging": {
+                "header": true,
+                "delimeter": ",",
+                "schema": true,
+                "override_schema": [
+                    {
+                        "col_name": "",
+                        "data_type": "dattime"
+                    }
+                ],
+                "mode": "append",
+                "new_cols": [
+                    {
+                        "col_name": "processing_time",
+                        "expression": ""
+                    }
+                ],
+                "partition": "DAY"
+            },
+            "publish": {
+                "source": "staging",
+                "window_function": "row_number",
+                "partition_by": "col1,col2,col3",
+                "order_by": "col1,col2,col3",
+                "mode": "append"
+            }
+        },
+        {
+            "data_asset": "tags",
+            "raw": {
+                "file_type": "csv",
+                "source_bucket": "data-ing-movielens-landing",
+                "raw_bucket": "data-ing-movielens-raw",
+                "source_folder": "movie-lens",
+                "partition": "SECOND",
+                "file_pattern": "tag*"
+            },
+            "staging": {
+                "header": true,
+                "delimeter": ",",
+                "schema": true,
+                "override_schema": [
+                    {
+                        "col_name": "",
+                        "data_type": "dattime"
+                    }
+                ],
+                "mode": "append",
+                "new_cols": [
+                    {
+                        "col_name": "processing_time",
+                        "expression": ""
+                    }
+                ],
+                "partition": "DAY"
+            },
+            "publish": {
+                "source": "staging",
+                "window_function": "row_number",
+                "partition_by": "col1,col2,col3",
+                "order_by": "col1,col2,col3",
+                "mode": "append"
+            }
+        },
+        {
+            "data_asset": "rating",
+            "raw": {
+                "file_type": "csv",
+                "source_bucket": "data-ing-movielens-landing",
+                "raw_bucket": "data-ing-movielens-raw",
+                "source_folder": "movie-lens",
+                "partition": "DAY",
+                "file_pattern": "rating*"
+            },
+            "staging": {
+                "header": true,
+                "delimeter": ",",
+                "schema": true,
+                "override_schema": [
+                    {
+                        "col_name": "",
+                        "data_type": "dattime"
+                    }
+                ],
+                "mode": "append",
+                "new_cols": [
+                    {
+                        "col_name": "processing_time",
+                        "expression": ""
+                    }
+                ],
+                "partition": "DAY"
+            },
+            "publish": {
+                "source": "staging",
+                "window_function": "row_number",
+                "partition_by": "col1,col2,col3",
+                "order_by": "col1,col2,col3",
+                "mode": "append"
+            }
+        },
+        {
+            "data_asset": "link",
+            "raw": {
+                "file_type": "csv",
+                "source_bucket": "data-ing-movielens-landing",
+                "raw_bucket": "data-ing-movielens-raw",
+                "source_folder": "movie-lens",
+                "partition": "DAY",
+                "file_pattern": "link*"
+            },
+            "staging": {
+                "header": true,
+                "delimeter": ",",
+                "schema": true,
+                "override_schema": [
+                    {
+                        "col_name": "",
+                        "data_type": "dattime"
+                    }
+                ],
+                "mode": "append",
+                "new_cols": [
+                    {
+                        "col_name": "processing_time",
+                        "expression": ""
+                    }
+                ],
+                "partition": "DAY"
+            },
+            "publish": {
+                "source": "staging",
+                "window_function": "row_number",
+                "partition_by": "col1,col2,col3",
+                "order_by": "col1,col2,col3",
+                "mode": "append"
+            }
+        },
+        {
+            "data_asset": "genome_tags",
+            "raw": {
+                "file_type": "csv",
+                "source_bucket": "data-ing-movielens-landing",
+                "raw_bucket": "data-ing-movielens-raw",
+                "source_folder": "movie-lens",
+                "partition": "DAY",
+                "file_pattern": "genome_tag*"
+            },
+            "staging": {
+                "header": true,
+                "delimeter": ",",
+                "schema": true,
+                "override_schema": [
+                    {
+                        "col_name": "",
+                        "data_type": "dattime"
+                    }
+                ],
+                "mode": "append",
+                "new_cols": [
+                    {
+                        "col_name": "processing_time",
+                        "expression": ""
+                    }
+                ],
+                "partition": "DAY"
+            },
+            "publish": {
+                "source": "staging",
+                "window_function": "row_number",
+                "partition_by": "col1,col2,col3",
+                "order_by": "col1,col2,col3",
+                "mode": "append"
+            }
+        },
+        {
+            "data_asset": "genome_scores",
+            "raw": {
+                "file_type": "csv",
+                "source_bucket": "data-ing-movielens-landing",
+                "raw_bucket": "data-ing-movielens-raw",
+                "source_folder": "movie-lens",
+                "partition": "DAY",
+                "file_pattern": "genome_score*"
+            },
+            "staging": {
+                "header": true,
+                "delimeter": ",",
+                "schema": true,
+                "override_schema": [
+                    {
+                        "col_name": "",
+                        "data_type": "dattime"
+                    }
+                ],
+                "mode": "append",
+                "new_cols": [
+                    {
+                        "col_name": "processing_time",
+                        "expression": ""
+                    }
+                ],
+                "partition": "DAY"
+            },
+            "publish": {
+                "source": "staging",
+                "window_function": "row_number",
+                "partition_by": "col1,col2,col3",
+                "order_by": "col1,col2,col3",
+                "mode": "append"
+            }
+        }
+    ]
+}
